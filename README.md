@@ -51,7 +51,18 @@ The JDBC API consists of the following core parts:
 
             // etc.
             }
+            
+            
+    If you do not know the index of a certain column you can find the index of that column using the                                        ResultSet.findColumn(String columnName) method
+            int nameIndex   = result.findColumn("name");
+            int ageIndex    = result.findColumn("age");
+            int coeffIndex  = result.findColumn("coefficient");
 
+            while(result.next()) {
+                String name = result.getString(nameIndex);
+                int age = result.getInt(ageIndex);
+                BigDecimal coefficient = result.getBigDecimal (coeffIndex);
+            }
 
       
   
@@ -61,4 +72,6 @@ There are four basic JDBC use cases around which most JDBC work evolves:
     2.Query the database meta data.
     3.Update the database.
     4.Perform transactions.
+    
+
     
