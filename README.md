@@ -25,6 +25,14 @@ The JDBC API consists of the following core parts:
       result.close();
       statement.close();
       
+    Not all types are supported by all databases and JDBC drivers. You will have to check your database and JDBC driver to see
+    
+    if it supports the type you want to use. The DatabaseMetaData.supportsResultSetType(int type) method returns true or false
+    
+    depending on whether the given type is supported or not. The DatabaseMetaData class is covered in a later text.
+
+
+      
   
 There are four basic JDBC use cases around which most JDBC work evolves:
 
