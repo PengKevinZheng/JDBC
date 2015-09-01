@@ -64,7 +64,30 @@ The JDBC API consists of the following core parts:
                 BigDecimal coefficient = result.getBigDecimal (coeffIndex);
             }
 
-      
+attributte of resultset: 
+
+    1.Type
+    
+        ResultSet.TYPE_FORWARD_ONLY: TYPE_FORWARD_ONLY means that the ResultSet can only be navigated forward. That is,               you can only move from row 1, to row 2, to row 3 etc. You cannot move backwards in the ResultSet.
+        
+        ResultSet.TYPE_SCROLL_INSENSITIVE: TYPE_SCROLL_INSENSITIVE means that the ResultSet can be navigated (scrolled)               both forward and backwards. You can also jump to a position relative to the current position, or jump to an                   absolute position. The ResultSet is insensitive to changes in the underlying data source while the ResultSet is               open. That is, if a record in the ResultSet is changed in the database by another thread or process, it will not              be reflected in already opened ResulsSet's of this type.
+        
+        ResultSet.TYPE_SCROLL_SENSITIVE:TYPE_SCROLL_SENSITIVE means that the ResultSet can be navigated (scrolled) both               forward and backwards. You can also jump to a position relative to the current position, or jump to an absolute               position. The ResultSet is sensitive to changes in the underlying data source while the ResultSet is open. That               is, if a record in the ResultSet is changed in the database by another thread or process, it will be reflected in             already opened ResulsSet's of this type.
+
+    2.Concurrency
+            
+        CONCUR_READ_ONLY means that the ResultSet can only be read.
+
+        CONCUR_UPDATABLE means that the ResultSet can be both read and updated.
+
+
+    3.Holdability
+    
+        The CLOSE_CURSORS_OVER_COMMIT holdability means that all ResultSet instances are closed when connection.commit()             method is called on the connection that created the ResultSet.
+
+        The HOLD_CURSORS_OVER_COMMIT holdability means that the ResultSet is kept open when the connection.commit() method is         called on the connection that created the ResultSet.
+
+        The HOLD_CURSORS_OVER_COMMIT holdability might be useful if you use the ResultSet to update values in the database.          Thus, you can open a ResultSet, update rows in it, call connection.commit() and still keep the same ResultSet open           for future transactions on the same rows.
   
 There are four basic JDBC use cases around which most JDBC work evolves:
 
