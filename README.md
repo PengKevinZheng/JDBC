@@ -96,5 +96,47 @@ There are four basic JDBC use cases around which most JDBC work evolves:
     3.Update the database.
     4.Perform transactions.
     
+The PreparedStatement's primary features are:
+    
+    Easy to insert parameters into the SQL statement.
+    Easy to reuse the PreparedStatement with new parameters.
+    May increase performance of executed statements.
+    Enables easier batch updates.
+    
+Batch updates:
+
+    A batch update is a batch of updates grouped together, and sent to the database in one "batch", rather than sending the
+    
+    updates one by one.
+    
+    Sending a batch of updates to the database in one go, is faster than sending them one by one, waiting for each one to
+    
+    finish. There is less network traffic involved in sending one batch of updates (only 1 round trip), and the database
+    
+    might be able to execute some of the updates in parallel. The speed up compared to executing the updates one by one, can
+    
+    be quite big.
+    
+    There are two ways to execute batch updates:
+
+        Using a Statement and addBatch();
+        Using a PreparedStatement and addBatch();
+        
+How to make a transaction in JDBC?
+
+    You start a transaction by this invocation:
+
+    connection.setAutoCommit(false);
+    
+    Now you can continue to perform database queries and updates. All these actions are part of the transaction.
+
+    If any action attempted within the transaction fails, you should rollback the transaction. This is done like this:
+    connection.rollback();
+    
+    If all actions succeed, you should commit the transaction. Committing the transaction makes the actions permanent in the     database. Once committed, there is no going back. Committing the transaction is done like this:
+
+    connection.commit();
+
+    
 
     
